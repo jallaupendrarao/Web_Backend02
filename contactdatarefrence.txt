@@ -1,0 +1,55 @@
+<?php
+
+$con=mysqli_connect("localhost", "root","","learn");
+$q =" select * from contactdata";
+$r = mysqli_query($con,$q);
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    
+<table class=" table table-hover table-striped">
+    <tr>
+        <th>id</th>
+       
+<th>Name</th>
+<th>Email</th>
+<th>Subject</th>
+<th>Message</th>
+
+    </tr>
+    <?php 
+    $a=1;
+    while($key=mysqli_fetch_assoc($r)){
+        ?>
+        <tr>
+            <td>
+                <?php echo $a++;?>
+            </td>
+       
+            <td>
+                <?php echo $key['Name'];?>
+            </td>
+            <td>
+                <?php  echo $key['Email'];?>
+            </td>
+<td><?php  echo $key['Subject'];?></td>
+<td><?php  echo $key['Mesage'];?></td>
+<td><a href="contactdelete.php?q=<?=$key['Name'];?>" class="btn btn-danger">delete</a></td>
+        </tr>
+
+        <?php } ?>
+</table>
+</body>
+</html>
